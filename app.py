@@ -199,8 +199,8 @@ day_txt = "1 day" if horizon == 1 else f"{horizon} days"
 c1, c2, c3, c4, c5 = st.columns(5)
 c1.metric("Portfolio value", money(investment, currency))
 c2.metric("Annualised volatility", f"{stats.vol_annual:.1%}")
-c3.metric(f"{conf_txt} VaR ({day_txt})", money(var, currency), f"{var/investment:.2%} of portfolio")
-c4.metric(f"{conf_txt} CVaR ({day_txt})", money(cvar, currency), f"{cvar/investment:.2%} of portfolio")
+c3.metric(f"{conf_txt} VaR ({day_txt})", money(var, currency))
+c4.metric(f"{conf_txt} CVaR ({day_txt})", money(cvar, currency))
 c5.metric("Diversification ratio", f"{diversification['diversification_ratio']:.2f}x")
 
 var_text = f"{currency} {var:,.2f}" if currency else f"{var:,.2f}"
