@@ -1,6 +1,6 @@
 """Portfolio risk mathematics for the multi-asset VaR application.
 
-The model is deliberately transparent and interview-defendable:
+The model is deliberately transparent and easy to inspect:
 - daily adjusted-close simple returns
 - constant target portfolio weights
 - correlated multivariate-normal Monte Carlo OR joint historical bootstrap

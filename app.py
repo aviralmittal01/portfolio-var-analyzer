@@ -203,11 +203,12 @@ c3.metric(f"{conf_txt} VaR ({day_txt})", money(var, currency), f"{var/investment
 c4.metric(f"{conf_txt} CVaR ({day_txt})", money(cvar, currency), f"{cvar/investment:.2%} of portfolio")
 c5.metric("Diversification ratio", f"{diversification['diversification_ratio']:.2f}x")
 
+var_text = f"{currency} {var:,.2f}" if currency else f"{var:,.2f}"
+cvar_text = f"{currency} {cvar:,.2f}" if currency else f"{cvar:,.2f}"
 st.success(
-    f"In this model, the **{conf_txt} {day_txt} VaR is {money(var, currency)}**. "
-    f"That means losses exceed this threshold in about **{1-confidence:.1%} of modelled scenarios**. "
-    f"Within that tail, the average loss (CVaR / Expected Shortfall) is "
-    f"**{money(cvar, currency)}**."
+    f"At {conf_txt} confidence over {day_txt}, the model estimates that portfolio losses "
+    f"should not exceed {var_text}. In the worst {1-confidence:.1%} of modelled outcomes, "
+    f"the average loss is {cvar_text} (CVaR / Expected Shortfall)."
 )
 
 if stats.excess_kurtosis > 1:
@@ -268,15 +269,15 @@ with tabs[0]:
         )
         benefit = diversification["var_diversification_benefit"]
         st.metric(
-            "Illustrative parametric VaR diversification benefit",
+            "Estimated VaR diversification benefit",
             money(benefit, currency),
             help=(
-                "Sum of stand-alone parametric VaRs minus portfolio parametric VaR. "
-                "Useful intuition, but VaR is not universally subadditive under every model."
+                "Estimated as the sum of stand-alone parametric VaRs minus portfolio parametric VaR. "
+                "This is a diversification diagnostic; VaR is not guaranteed to be subadditive under all models."
             ),
         )
         st.info(
-            "**Interview takeaway:** portfolio risk is not the simple sum of individual risks. "
+            "**Diversification insight:** Portfolio risk is not the simple sum of individual risks. "
             "Covariance and correlation determine how positions move together, which is the "
             "mechanism behind diversification."
         )
@@ -459,7 +460,7 @@ large is the average loss?* This gives more information about severity beyond th
         """
     )
     st.info(
-        "**Learning objective:** this tool is designed to make market-risk concepts visible, not to "
+        "**Scope note:** This tool is designed to make market-risk concepts visible, not to "
         "replace a production risk platform. A production implementation would require stronger "
         "market-data controls, currency conversion, factor/stress models, liquidity risk, validation, "
         "model governance and independent testing."

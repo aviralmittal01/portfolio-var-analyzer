@@ -2,7 +2,7 @@
 
 An educational Streamlit application for understanding **portfolio market risk** through Value at Risk (VaR), Expected Shortfall / CVaR, correlation, covariance, diversification and scenario simulation.
 
-This version extends a single-asset VaR learning app into a **multi-asset, covariance-aware portfolio risk lab**. The goal is not to imitate a production risk platform; it is to make the core risk concepts visible, testable and interview-defendable.
+This version extends a single-asset VaR learning app into a **multi-asset, covariance-aware portfolio risk lab**. The goal is not to imitate a production risk platform; it is to make the core risk concepts visible, testable and easy to inspect.
 
 ## Why this project exists
 
@@ -100,7 +100,7 @@ A production risk platform would require much stronger market-data controls, FX 
 ## Project structure
 
 ```text
-BlackRock_Portfolio_VaR_Analyzer/
+portfolio-var-analyzer/
 ├── app.py                     # Streamlit user interface
 ├── portfolio_engine.py        # Portfolio risk maths and simulation
 ├── market_data.py             # Market-data access, alignment and quality report
@@ -109,7 +109,6 @@ BlackRock_Portfolio_VaR_Analyzer/
 ├── requirements.txt
 ├── requirements-dev.txt
 ├── pytest.ini
-├── INTERVIEW_DEFENSE_GUIDE.md
 ├── ATTRIBUTION.md
 └── LICENSE
 ```
@@ -139,14 +138,6 @@ pytest -q
 5. Deploy.
 
 No API key is required for the current Yahoo Finance data path.
-
-## Suggested interview framing
-
-Do **not** present this as proof of advanced Python expertise if that is not your background. A stronger and more accurate framing is:
-
-> I was learning VaR and realised I understood the definition more than the intuition, so I used an existing educational single-stock implementation as a starting point and, with AI-assisted development, extended the idea into a multi-asset portfolio risk tool. The extension forced me to understand why covariance and correlation matter, why portfolio risk is not the sum of individual risks, and how Historical, Parametric and Monte Carlo VaR differ. I then worked through the methodology, assumptions and code flow so I could explain and validate what the tool was doing rather than treating the output as a black box.
-
-See `INTERVIEW_DEFENSE_GUIDE.md` for the concepts and likely follow-up questions to prepare.
 
 ## Disclaimer
 
